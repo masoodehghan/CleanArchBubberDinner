@@ -16,11 +16,12 @@ builder.Services
 
 
 var app = builder.Build();
-
+{
 // app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseExceptionHandler("/error");
-app.UseHttpsRedirection();
-app.MapControllers();
-
-
-app.Run();
+    app.UseExceptionHandler("/error");
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
+}

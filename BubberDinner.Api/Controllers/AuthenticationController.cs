@@ -10,10 +10,12 @@ using BubberDinner.Application.Authentication.Commands;
 using BubberDinner.Application.Authentication.Common;
 using BubberDinner.Application.Authentication.Queries.Login;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BubberDinner.Contracts.Controllers;
 
 [Route("auth")]
+[AllowAnonymous]
 public class AuthenticationController: ApiController
 {
     private readonly ISender _mediator;
@@ -23,6 +25,7 @@ public class AuthenticationController: ApiController
     {
         _mediator = mediator;
         _mapper = mapper;
+        Console.WriteLine($"{typeof(AuthenticationController).TypeInfo()} ISIISISISISI");
     }
 
     [HttpPost("register")]
