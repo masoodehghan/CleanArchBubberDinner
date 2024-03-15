@@ -2,7 +2,7 @@ using BubberDinner.Application.Common.Interfaces.Authentication;
 using BubberDinner.Application.Common.Interfaces.Persistence;
 using ErrorOr;
 using MediatR;
-using BubberDinner.Domain.Errors;
+using BubberDinner.Domain.Common.Errors;
 using BubberDinner.Domain.Entities;
 using BubberDinner.Application.Authentication.Common;
 

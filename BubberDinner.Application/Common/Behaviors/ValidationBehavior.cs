@@ -40,7 +40,6 @@ public class ValidationBehavior<TRequest, TResponse> :
         }
         else
         {
-            Console.WriteLine("fdafasdfsdfa");
             var errors = validationResult.Errors.ConvertAll(
                 validationError => Error.Validation(
                 validationError.PropertyName,

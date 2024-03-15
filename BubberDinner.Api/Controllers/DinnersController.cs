@@ -8,7 +8,6 @@ public class DinnersController : ApiController
     [HttpGet]
     public IActionResult List()
     {
-
         return Ok(Array.Empty<string>());
     }
 }

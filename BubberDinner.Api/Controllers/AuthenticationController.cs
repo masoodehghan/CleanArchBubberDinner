@@ -4,7 +4,7 @@ using BubberDinner.Application.Common.Errors;
 using BubberDinner.Application.Authentication.Queries;
 using ErrorOr;
 using BubberDinner.Api.Controllers;
-using BubberDinner.Domain.Errors;
+using BubberDinner.Domain.Common.Errors;
 using MediatR;
 using BubberDinner.Application.Authentication.Commands;
 using BubberDinner.Application.Authentication.Common;
@@ -25,7 +25,7 @@ public class AuthenticationController: ApiController
     {
         _mediator = mediator;
         _mapper = mapper;
-        Console.WriteLine($"{typeof(AuthenticationController).TypeInfo()} ISIISISISISI");
+        Console.WriteLine($"{typeof(AuthenticationController).GetType()} ISIISISISISI");
     }
 
     [HttpPost("register")]
