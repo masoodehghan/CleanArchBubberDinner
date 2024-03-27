@@ -25,12 +25,12 @@ namespace BubberDinner.Infrastructure.Authentication
         {
             var singingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(_jwtSettings.Secrets)),
+                    Encoding.UTF8.GetBytes(_jwtSettings.Secrets!)),
                 SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
-                new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName!),
+                new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName!),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
             };

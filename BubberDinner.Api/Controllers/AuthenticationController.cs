@@ -25,7 +25,6 @@ public class AuthenticationController: ApiController
     {
         _mediator = mediator;
         _mapper = mapper;
-        Console.WriteLine($"{typeof(AuthenticationController).GetType()} ISIISISISISI");
     }
 
     [HttpPost("register")]

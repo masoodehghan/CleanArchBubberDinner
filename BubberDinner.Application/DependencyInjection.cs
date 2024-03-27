@@ -7,6 +7,7 @@ using BubberDinner.Application.Common.Behaviors;
 using ErrorOr;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BubberDinner.Application.Services;
@@ -19,10 +20,9 @@ public static class DependencyInjection
         
         
         
+        services.AddValidatorsFromAssemblyContaining<RegisterCommandValidtor>(ServiceLifetime.Scoped);
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(
-            typeof(DependencyInjection).Assembly)
-        );
+        services.AddMediatR(typeof(DependencyInjection).Assembly);
         return services;
     }
 }

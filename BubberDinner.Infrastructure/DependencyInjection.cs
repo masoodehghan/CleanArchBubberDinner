@@ -22,9 +22,19 @@ public static class DependencyInjection
         ConfigurationManager configuration)
     {
         services.AddAuth(configuration);
+        services.AddPersistence();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        services.AddScoped<IUserRepository, UserRepository>();
 
+        return services;
+    }
+
+    public static IServiceCollection AddPersistence(
+        this IServiceCollection services
+    )
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
+        
         return services;
     }
 
@@ -49,7 +59,7 @@ public static class DependencyInjection
                 ValidIssuer = jwtSettings.Issuer,
                 ValidAudience = jwtSettings.Audience,
                 IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(jwtSettings.Secrets)
+                    Encoding.UTF8.GetBytes(jwtSettings.Secrets!)
                 )
             });
         return services;
