@@ -23,9 +23,7 @@ public class ValidationBehavior<TRequest, TResponse> :
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
-    {
-
-
+    { 
         if(_validator is null)
         {
 
