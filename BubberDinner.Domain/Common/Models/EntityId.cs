@@ -6,7 +6,7 @@ public  class EntityId : ValueObject
 {
     public Guid Value { get; }
 
-    public EntityId(Guid value)
+    protected EntityId(Guid value)
     {
         Value = value;
     }
@@ -15,5 +15,14 @@ public  class EntityId : ValueObject
     {
         yield return Value;
     }
+
+#pragma warning disable CS8618
+    
+        protected EntityId()
+        {
+        }
+#pragma warning restore CS8618
+
+
 }
 

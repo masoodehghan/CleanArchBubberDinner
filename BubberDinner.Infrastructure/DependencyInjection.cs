@@ -5,8 +5,11 @@ using BubberDinner.Application.Common.Interfaces.Persistence;
 using BubberDinner.Application.Common.Interfaces.Services;
 using BubberDinner.Infrastructure.Authentication;
 using BubberDinner.Infrastructure.Persistence;
+using BubberDinner.Infrastructure.Persistence.Interceptors;
+using BubberDinner.Infrastructure.Persistence.Repositories;
 using BubberDinner.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -22,16 +25,21 @@ public static class DependencyInjection
         ConfigurationManager configuration)
     {
         services.AddAuth(configuration);
-        services.AddPersistence();
+        services.AddPersistence(configuration);
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         return services;
     }
 
     public static IServiceCollection AddPersistence(
-        this IServiceCollection services
+        this IServiceCollection services,
+        ConfigurationManager configuration
     )
     {
+        
+        services.AddDbContext<BubberDinnerDbContext>(options => 
+         options.UseSqlServer(configuration.GetConnectionString("defaultConnection")));
+        services.AddScoped<PublishDomainEventsInterceptor>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
         

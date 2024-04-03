@@ -1,6 +1,7 @@
 using BubberDinner.Domain.Common.Models;
 using BubberDinner.Domain.HostAggreagte.ValueObjects;
 using BubberDinner.Domain.MenuAggregate.Entities;
+using BubberDinner.Domain.MenuAggregate.Events;
 using BubberDinner.Domain.MenuAggregate.ValueObjects;
 
 namespace BubberDinner.Domain.MenuAggregate;
@@ -8,23 +9,23 @@ namespace BubberDinner.Domain.MenuAggregate;
 public sealed class Menu : AggregateRoot<MenuId>
 {
     private readonly List<MenuSection> _sections = new();
-    public HostId _hostId;
-    public string Name { get; }
-    public string Description { get; }
-    public float? AverageRating { get; }
+    public HostId hostId;
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public float? AverageRating { get; private set; }
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly(); 
 
-    public Menu(
+    private Menu(
         MenuId id,
         HostId hostId,
         string name,
         string description,
         List<MenuSection> sections,
-        float? averageRating) : base(id)
+        float? averageRating = null) : base(id)
     {
         
         Name = name;
-        _hostId = hostId;
+        this.hostId = hostId;
         Description = description;
         AverageRating = averageRating;
         _sections = sections;
@@ -38,7 +39,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         float? averageRating = null
     )
     {
-        return new(
+        Menu menu =  new(
             MenuId.CreateUnique(),
             hostId,
             name,
@@ -46,7 +47,17 @@ public sealed class Menu : AggregateRoot<MenuId>
             sections ?? new(),
             averageRating
             );
-    }
 
+        menu.AddDomainEvent(new MenuCreated(menu));
+
+
+        return menu;
+    }
+#pragma warning disable CS8618
+    
+        private Menu()
+        {
+        }
+#pragma warning restore CS8618
 
 }

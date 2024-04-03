@@ -36,6 +36,11 @@ public sealed class MenuId : EntityId
     {
         return new(Guid.NewGuid());
     }
+
+    public static MenuId Create(Guid value)
+    {
+        return new(value);
+    }
 }
 
 

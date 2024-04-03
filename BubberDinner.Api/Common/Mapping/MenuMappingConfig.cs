@@ -22,7 +22,7 @@ public class MenuMappingConfig : IRegister
 
         config.NewConfig<Menu, MenuResponse>()
                 .Map(dest => dest.id, src => src.Id.Value)
-                .Map(dest => dest.HostId, src => src._hostId.Value);
+                .Map(dest => dest.HostId, src => src.hostId.Value);
 
         config.NewConfig<MenuSection, MenuSectionResponse>()
                 .Map(dest => dest.id, src => src.Id.Value);

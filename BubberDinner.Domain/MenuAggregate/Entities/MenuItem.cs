@@ -5,12 +5,13 @@ namespace BubberDinner.Domain.MenuAggregate.Entities;
 
 public sealed class MenuItem : Entity<MenuItemId>
 {
+    public string Name { get; private set; }
+    public string Description { get; private set; }
 
-    private readonly List<MenuItem> _items = new();
-    public string Name { get; }
-    public string Description { get; }
-
-    public MenuItem(MenuItemId menuItemId, string name, string description) : base(menuItemId)
+    private MenuItem(
+        MenuItemId menuItemId,
+        string name,
+        string description) : base(id: menuItemId)
     {
         Description = description;
         Name = name;
@@ -20,5 +21,13 @@ public sealed class MenuItem : Entity<MenuItemId>
     {
         return new(MenuItemId.CreateUnique(), name, description);
     }
+
+#pragma warning disable CS8618
+    
+        private MenuItem()
+        {
+        }
+#pragma warning restore CS8618
+
 
 }
