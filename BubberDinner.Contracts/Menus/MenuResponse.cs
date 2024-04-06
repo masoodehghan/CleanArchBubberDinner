@@ -1,7 +1,7 @@
 namespace BubberDinner.Contracts.Menus;
 
 public record MenuResponse(
-    string id,
+    string Id,
     string Name,
     string Description,
     float? AverageRating,
@@ -14,14 +14,14 @@ public record MenuResponse(
 );
 
 public record MenuSectionResponse(
-    string id,
+    string Id,
     string Name,
     string Description,
     List<MenuItemResponse> MenuItemResponses
 );
 
 public record MenuItemResponse(
-    string id,
+    string Id,
     string Name,
     string Description
 );

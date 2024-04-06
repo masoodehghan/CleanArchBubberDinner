@@ -4,7 +4,7 @@ namespace BubberDinner.Domain.Common.Models;
 
 public  class EntityId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set;}
 
     protected EntityId(Guid value)
     {

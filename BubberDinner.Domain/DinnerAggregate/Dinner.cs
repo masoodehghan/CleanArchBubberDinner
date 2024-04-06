@@ -6,13 +6,7 @@ namespace BubberDinner.Domain.DinnerAggregate;
 
 public sealed class Dinner : AggregateRoot<DinnerId>
 {
-    public enum StatusEnum
-    {
-        Upcoming,
-        InProgress,
-        Ended,
-        Canceled,
-    }
+
 
     public string Name { get; private set; }
     public string Description { get; private set;}

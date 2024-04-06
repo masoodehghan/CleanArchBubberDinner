@@ -1,6 +1,5 @@
 ﻿using BubberDinner.Contracts.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using BubberDinner.Application.Common.Errors;
 using BubberDinner.Application.Authentication.Queries;
 using ErrorOr;
 using BubberDinner.Api.Controllers;

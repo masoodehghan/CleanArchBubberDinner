@@ -15,7 +15,10 @@ builder.Services
 
 var app = builder.Build();
 {
-    app.UseExceptionHandler("/error");
+    app.UseExceptionHandler(new ExceptionHandlerOptions(){
+        AllowStatusCode404Response = true,
+        ExceptionHandlingPath = "/error"
+    });
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
