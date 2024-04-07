@@ -1,4 +1,5 @@
 using BubberDinner.Domain.Common.Models;
+using BubberDinner.Domain.DinnerAggregate.Enums;
 using BubberDinner.Domain.DinnerAggregate.ValueObjects;
 
 namespace BubberDinner.Domain.DinnerAggregate;

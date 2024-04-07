@@ -1,8 +1,10 @@
 using BubberDinner.Domain.Common.Models;
+using BubberDinner.Domain.DinnerAggregate.ValueObjects;
 using BubberDinner.Domain.HostAggreagte.ValueObjects;
 using BubberDinner.Domain.MenuAggregate.Entities;
 using BubberDinner.Domain.MenuAggregate.Events;
 using BubberDinner.Domain.MenuAggregate.ValueObjects;
+using BubberDinner.Domain.MenuReviewAggregate.ValueObjects;
 
 namespace BubberDinner.Domain.MenuAggregate;
 
@@ -13,6 +15,12 @@ public sealed class Menu : AggregateRoot<MenuId>
     public string Name { get; private set; }
     public string Description { get; private set; }
     public float? AverageRating { get; private set; }
+    private readonly List<DinnerId> _dinnerIds = new();
+    public IReadOnlyList<DinnerId> DinnerIds  => _dinnerIds.AsReadOnly();
+    
+    private readonly List<MenuReviewId> _menuReviewIds = new();
+    public IReadOnlyList<MenuReviewId> MenuReviewIds  => _menuReviewIds.AsReadOnly();
+    
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly(); 
 
     private Menu(
